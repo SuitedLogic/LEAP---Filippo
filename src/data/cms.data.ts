@@ -103,11 +103,39 @@ export const cmsData = [
         },
       ],
       submission: {
-        endpoint: "/api/contact",
+        endpoint: "/api/contactable",
         method: "POST",
         successMessage: "Thank you for contacting us!",
         errorMessage: "Something went wrong. Please try again.",
       },
     },
   },
+  {
+    id: "footer-section",
+    attributes: {
+      text: {
+        copyright: "© 2025 Mayhem. All rights reserved.",
+      }, 
+      content: {
+        socialLinks: [
+        {
+          icon: "icon-facebook",
+          platform: "Facebook",
+          url: "#",
+        },
+        {
+          icon: "icon-twitter",
+          platform: "Twitter",
+          url: "#",
+        },
+        {
+          icon: "icon-linkedin",
+          platform: "LinkedIn",
+          url: "#",
+        },
+      ],
+      }
+    }
+    
+  }
 ];
