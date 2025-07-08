@@ -101,6 +101,20 @@ export const cmsData = [
             placeholder: "your@email.com",
           },
         },
+        {
+          type: "textarea",
+          name: "message",
+          label: "Message",
+          validation: {
+            required: true,
+            minLength: 10,
+            maxLength: 500,
+          },
+          styling: {
+            className: "form-input",
+            placeholder: "Enter your message",
+          },
+        },
       ],
       submission: {
         endpoint: "/api/contactable",

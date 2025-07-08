@@ -39,7 +39,7 @@ const HeroBanner: React.FC = () => {
                 >
                     {subtitleData.text}
                 </Typography>
-                <Button type="button" onClick={() => console.log('Button clicked!')}>
+                <Button type="button" onClick={() => console.log('Button clicked!')} className={`mt-8 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-300 cursor-pointer`}>
                     Get Started
                 </Button>
             </div>

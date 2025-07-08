@@ -1,4 +1,6 @@
-export type TextFieldProps = {
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+
+export type TTextField = {
     type: 'text' | 'email' | 'textarea';
     name: string;
     label: string;
@@ -6,6 +8,7 @@ export type TextFieldProps = {
         required?: boolean;
         minLength?: number;
         maxLength?: number;
+        pattern?: string;
     }
     styling?: {
         className?: string;
@@ -13,7 +16,13 @@ export type TextFieldProps = {
     }
 };
 
-const TextField: React.FC<{field: TextFieldProps}> = ({ field }) => {
+type TextFieldProps<T extends Record<string, unknown> = Record<string, unknown>> = {
+  field: TTextField;
+  register: UseFormRegister<T>;
+  errors?: FieldErrors<T>;
+}
+
+const TextField: React.FC<TextFieldProps> = ({ field, register, errors }) => {
     const { type, name, label, styling } = field;
 
     return (
@@ -21,28 +30,27 @@ const TextField: React.FC<{field: TextFieldProps}> = ({ field }) => {
             <label htmlFor={name} className="block text-gray-700 font-medium mb-2">
               {label}
             </label>
-            {type === 'textarea' ? (
+           {type === 'textarea' ? (
               <textarea
-                required={field.validation?.required}
-                minLength={field.validation?.minLength}
-                maxLength={field.validation?.maxLength}
+                {...register(name)}
                 id={name}
-                name={name}
                 rows={4}
                 placeholder={styling?.placeholder}
                 className={`${styling?.className || 'form-input'} w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
-              ></textarea>
+              />
             ) : (
               <input
+                {...register(name)}
                 type={type}
                 id={name}
-                name={name}
-                required={field.validation?.required}
-                minLength={field.validation?.minLength}
-                maxLength={field.validation?.maxLength}
                 placeholder={styling?.placeholder}
-                className={`${styling?.className || 'form-input'} w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 `}
+                className={`${styling?.className || 'form-input'} w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
+            )}
+            {errors && errors[name] && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors[name]?.message as string}
+              </p>
             )}
           </div>
         
