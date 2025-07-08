@@ -5,7 +5,7 @@ import HeroBanner from "@/components/cms/HeroBanner";
 import { CMSProvider } from "@/contexts/CmsContext";
 import { GetServerSideProps } from "next";
 
-export interface CMSSection<T extends Record<string, unknown> = Record<string, unknown>> {
+export interface CMSSection<T = any> {
   id: string;
   type: string;
   attributes: T;

@@ -16,7 +16,7 @@ export type TTextField = {
     }
 };
 
-type TextFieldProps<T extends Record<string, unknown> = Record<string, unknown>> = {
+type TextFieldProps<T extends Record<string, any> = any> = {
   field: TTextField;
   register: UseFormRegister<T>;
   errors?: FieldErrors<T>;
