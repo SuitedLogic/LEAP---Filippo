@@ -1,8 +1,8 @@
 export const useSubmitForm = () => {
-  const submitForm = async (data: unknown) => {
+  const submitForm = async (data: unknown, endpoint: string, method: string) => {
     try {
-      const response = await fetch("/api/contactable", {
-        method: "POST",
+      const response = await fetch(endpoint, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
