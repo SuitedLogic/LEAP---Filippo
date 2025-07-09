@@ -3,28 +3,11 @@ import TextField, { TextFieldProps } from "@/components/UI/TextField";
 import Typography from "@/components/UI/Typography";
 import { useCMS } from "@/contexts/CmsContext";
 import { useSubmitForm } from "@/hooks/submitForm.hook";
-
-export interface ContactFormData {
-    id: string;
-    type: string;
-    attributes: {
-        fields: TextFieldProps[];
-        submission: {
-            endpoint: string;
-            method: string;
-            successMessage: string;
-            errorMessage: string;
-        };
-    };
-}
+import { ContactsFormSection } from "./types";
 
 const ContactsForm: React.FC = () => {
     const { getSectionById } = useCMS();
-    const contactData = getSectionById('contact-form') as ContactFormData | null;
-
-    if (!contactData || !contactData.attributes) {
-        return null; 
-    }
+    const contactData = getSectionById('contact-form') as ContactsFormSection;
 
     const { submitForm } = useSubmitForm();
 

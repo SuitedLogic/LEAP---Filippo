@@ -3,10 +3,11 @@ import Typography from "@/components/UI/Typography";
 import { ICON_PATH } from "@/constants";
 import { useCMS } from "@/contexts/CmsContext";
 import Icon from "../Icon";
+import { FooterSection } from "./types";
 
 const Footer: React.FC = () => {
     const { getSectionById } = useCMS();
-    const footerData = getSectionById('footer-section');
+    const footerData = getSectionById('footer-section') as FooterSection;
 
     if(!footerData || !footerData.attributes) return null;
 

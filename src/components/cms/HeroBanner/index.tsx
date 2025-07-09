@@ -2,10 +2,11 @@ import { useCMS } from "@/contexts/CmsContext";
 import Button from "../../UI/Button";
 import CmsImage from "../CmsImage";
 import Typography from "../../UI/Typography";
+import { HeroBannerSection } from "./types";
 
 const HeroBanner: React.FC = () => {
     const { getSectionById } = useCMS()
-    const heroData = getSectionById('hero-section')
+    const heroData = getSectionById('hero-section') as HeroBannerSection;
 
     if(!heroData) return null;
     
