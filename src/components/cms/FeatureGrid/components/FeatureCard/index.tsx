@@ -1,16 +1,7 @@
 import Typography from "@/components/UI/Typography";
 import Icon from "../../../Icon";
 import { ICON_PATH } from "@/constants";
-
-export interface IFeatureCard {
-    id: string;
-    content: {
-        alignment?: string;
-        description?: string;
-        icon?: string;
-        title: string;
-    };
-}
+import { FeatureGridContent } from "../../types";
 
 const iconWrapperStyle = {
     'icon-scalable-solution': 'bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4',
@@ -18,7 +9,12 @@ const iconWrapperStyle = {
     'icon-fast-performance': 'bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4'
 }
 
-const FeatureCard: React.FC<IFeatureCard> = ({ id, content }) => {
+type FeatureCardProps = {
+    id: string;
+    content: FeatureGridContent
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ id, content }) => {
     
     return (
        <div id={id} className={`bg-white p-8 rounded-lg shadow-md text-${content.alignment}`}>

@@ -1,4 +1,4 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 export type TTextField = {
     type: 'text' | 'email' | 'textarea';
@@ -16,13 +16,13 @@ export type TTextField = {
     }
 };
 
-type TextFieldProps<T extends Record<string, any> = any> = {
+type TextFieldProps<T extends FieldValues> = {
   field: TTextField;
   register: UseFormRegister<T>;
   errors?: FieldErrors<T>;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ field, register, errors }) => {
+const TextField = <T extends FieldValues>({ field, register, errors }: TextFieldProps<T>) => {
     const { type, name, label, styling } = field;
 
     return (
@@ -32,7 +32,7 @@ const TextField: React.FC<TextFieldProps> = ({ field, register, errors }) => {
             </label>
            {type === 'textarea' ? (
               <textarea
-                {...register(name)}
+                {...register(name as Path<T>)}
                 id={name}
                 rows={4}
                 placeholder={styling?.placeholder}
@@ -40,7 +40,7 @@ const TextField: React.FC<TextFieldProps> = ({ field, register, errors }) => {
               />
             ) : (
               <input
-                {...register(name)}
+                {...register(name as Path<T>)}
                 type={type}
                 id={name}
                 placeholder={styling?.placeholder}

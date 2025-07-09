@@ -1,14 +1,15 @@
 import { useCMS } from "@/contexts/CmsContext";
-import FeatureCard, { IFeatureCard } from "./components/FeatureCard";
+import FeatureCard from "./components/FeatureCard";
 import { getGridColsClass } from "./helper";
+import { FeatureGridSection } from "./types";
 
 
 const FeatureGrid: React.FC = () => {
     const { getSectionById } = useCMS();
-    const featureData = getSectionById('feature-grid');
+    const featureData = getSectionById('feature-grid') as FeatureGridSection;
     if(!featureData || !featureData.attributes) return null;
 
-    const featureCards = featureData.attributes.items.map((feature: IFeatureCard) => (
+    const featureCards = featureData.attributes.items.map((feature) => (
         <FeatureCard key={feature.id} id={feature.id} content={feature.content} />
     ));
 

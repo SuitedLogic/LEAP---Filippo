@@ -7,20 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { createContactSchema } from "./helpers/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-interface ContactFormData {
-    id: string;
-    type: string;
-    attributes: {
-        fields: TTextField[];
-        submission: {
-            endpoint: string;
-            method: string;
-            successMessage: string;
-            errorMessage: string;
-        };
-    };
-}
+import { ContactsFormSection } from "./types";
 
 interface Inputs {
   [key: string]: string;
@@ -28,7 +15,7 @@ interface Inputs {
 
 const ContactsForm: React.FC = () => {
     const { getSectionById } = useCMS();
-    const contactData = getSectionById('contact-form') as ContactFormData;
+    const contactData = getSectionById('contact-form') as ContactsFormSection;
 
     const { submitForm } = useSubmitForm();
 
@@ -86,6 +73,7 @@ const ContactsForm: React.FC = () => {
     if (!contactData || !contactData.attributes) {
         return null; 
     }
+    
 
     const { endpoint, method } = contactData.attributes.submission;
 
