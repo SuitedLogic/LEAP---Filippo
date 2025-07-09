@@ -1,11 +1,7 @@
+import { TextFieldProps } from "@/components/UI/TextField";
+
 export interface ContactsFormAttributes {
-  fields: Array<{
-    name: string;
-    type: 'text' | 'email' | 'textarea';
-    label: string;
-    required: boolean;
-    options?: string[];
-  }>;
+  fields: Array<TextFieldProps>;
   submission: {
     endpoint: string;
     method: string;
